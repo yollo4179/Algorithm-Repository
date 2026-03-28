@@ -2,16 +2,12 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-
 	static int n;
 	static int m;
 	static int[] arr;
-
 	public static void main(String[] args) throws Exception {
-
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-
 		n = Integer.parseInt(br.readLine());
 		st = new StringTokenizer(br.readLine());
 		arr=new int[n];
@@ -20,13 +16,9 @@ public class Main {
 		}
 		m = Integer.parseInt(br.readLine());
 		String commands = br.readLine();
-
-		
 		int numJumps = 0;
-		
 		int cntA = 0;
 		int cntD = 0;
-		
 		for (int i = 0; i < commands.length(); ++i) {
 			if (commands.charAt(i) == 'J')
 				++numJumps;
@@ -55,28 +47,22 @@ public class Main {
 			++i;
 			i = i % commands.length();
 		}
-
 		// m+n
 		int nxtIdx = 1;
 		int jump = 0;
 		boolean win=true;
 		while (nxtIdx <n) {
-			
 			if (arr[nxtIdx] >=0 && arr[nxtIdx] <= memo[jump][0]) {
-				jump = 1+ (jump) % (numJumps);
-				++nxtIdx;
 			}
 			else if (arr[nxtIdx] < 0 && memo[jump][1]>0 ) {
-				jump = 1+ (jump) % (numJumps);
-				++nxtIdx;
 			}
 			else {
 				win = false;
 				break;
 			}
-			
+			jump = 1+ (jump) % (numJumps);
+			++nxtIdx;
 		}
 		System.out.print( win?"YES":"NO" );
 	}
-
 }
